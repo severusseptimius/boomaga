@@ -541,10 +541,10 @@ bool Printer::print(const QList<Sheet *> &sheets, const QString &jobName, bool d
     project->writeDocument(sheets, file);
 
     QStringList args;
-    args << "-P" << name();                       // Prints files to the named printer.
-    args << "-#" << QString("%1").arg(numCopies); // Sets the number of copies to print
-    args << "-T" << jobName;                      // Sets the job name.
-    args << "-r";                                 // The print files should be deleted after printing them
+    args << "-d" << name();                       // Prints files to the named printer.
+    args << "-n" << QString("%1").arg(numCopies); // Sets the number of copies to print
+    args << "-t" << jobName;                      // Sets the job name.
+//    args << "-r";                                 // The print files should be deleted after printing them
 
     // Duplex options ...........................
     if (duplexType() == DuplexAuto && doubleSided)
@@ -588,10 +588,10 @@ bool Printer::print(const QList<Sheet *> &sheets, const QString &jobName, bool d
 //#define DEBUG_PRINT
 #ifndef DEBUG_PRINT
     QProcess proc;
-    proc.startDetached("lpr", args);
+    proc.startDetached("lp", args);
     return true;
 #else
-    QString s = "lpr";
+    QString s = "lp";
     foreach (QString a, args)
     {
         s += " \"" + a + "\"";
