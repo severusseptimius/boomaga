@@ -534,8 +534,8 @@ bool Printer::isSupportColor() const
 bool Printer::print(const QList<Sheet *> &sheets, const QString &jobName, bool doubleSided, int numCopies, bool collate) const
 {
 
-    QString file = QString("%1/.cache/boomaga_tmp_%2-print.pdf")
-                          .arg(QDir::homePath())
+    QString file = QString("/tmp/boomaga_tmp_%2-print.pdf")
+//                          .arg(QDir::homePath())
                           .arg(QCoreApplication::applicationPid());
 
     project->writeDocument(sheets, file);
