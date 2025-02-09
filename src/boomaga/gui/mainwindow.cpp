@@ -691,7 +691,6 @@ bool MainWindow::print(uint count, bool collate)
                  infoDialog = showPrintDialog(tr("Print the all pages on %1.").arg(project->printer()->name()));
              }
 
-
              res = project->printer()->print(keeper.sheets_1, "", project->doubleSided(), count, collate);
              if (!res)
              {
@@ -737,10 +736,12 @@ bool MainWindow::print(uint count, bool collate)
                  while (keeper.sheets_2.count() < keeper.sheets_1.count())
                      keeper.sheets_2.append(new Sheet(1, 0));
              }
-
+                 
              infoDialog = showPrintDialog(tr("Print the even pages on %1.").arg(project->printer()->name()));
 
-             res = project->printer()->print(keeper.sheets_2, "", project->doubleSided(), count, collate);
+             bool secondset=true;
+ 
+             res = project->printer()->print(keeper.sheets_2, "", project->doubleSided(), count, collate, secondset);
              if (!res)
              {
                  delete(infoDialog);

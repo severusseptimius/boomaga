@@ -531,7 +531,7 @@ bool Printer::isSupportColor() const
 /************************************************
 
  ************************************************/
-bool Printer::print(const QList<Sheet *> &sheets, const QString &jobName, bool doubleSided, int numCopies, bool collate) const
+bool Printer::print(const QList<Sheet *> &sheets, const QString &jobName, bool doubleSided, int numCopies, bool collate, bool secondset) const
 {
 
     QString file = QString("/tmp/boomaga_tmp_%2-print.pdf")
@@ -556,6 +556,11 @@ bool Printer::print(const QList<Sheet *> &sheets, const QString &jobName, bool d
     }
     else
     {
+        if (secondset == true && project->layout()->flipType(flipType()) == FlipType::ShortEdge){
+        args << "-o orientation-requested=6";
+        args << "-o sides=one-sided";
+        }
+        else
         args << "-o sides=one-sided";               // Turn off duplex printing
     }
     // Duplex options ...........................

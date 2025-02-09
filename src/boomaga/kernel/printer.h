@@ -160,7 +160,7 @@ public:
 
     bool canChangeDuplexType() const { return mCanChangeDuplexType; }
 
-    virtual bool print(const QList<Sheet*> &sheets, const QString &jobName, bool doubleSided, int numCopies, bool collate) const;
+    virtual bool print(const QList<Sheet*> &sheets, const QString &jobName, bool doubleSided, int numCopies, bool collate, bool secondset = false) const;
 
     QString deviceUri() const { return mDeviceUri; }
 
